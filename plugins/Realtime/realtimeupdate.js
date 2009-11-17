@@ -201,7 +201,7 @@ RealtimeUpdate = {
          $('#realtime_timeline').click(function() {
              window.open(url,
                          timeline,
-                         'toolbar=no,resizable=yes,scrollbars=yes,status=yes');
+                         'toolbar=no,resizable=yes,scrollbars=yes,status=yes,width=500,height=550');
 
              return false;
          });
@@ -209,7 +209,6 @@ RealtimeUpdate = {
 
      initPopupWindow: function()
      {
-         window.resizeTo(500, 550);
          $('address').hide();
          $('#content').css({'width':'93.5%'});
 
