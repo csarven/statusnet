@@ -197,6 +197,7 @@ RealtimeUpdate = {
              'font-weight':'bold',
              'font-size':'1em'
          });
+         $('#showstream #notices_primary').css({'margin-top':'18px'});
 
          $('#realtime_timeline').click(function() {
              window.open(url,
