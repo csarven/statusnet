@@ -34,6 +34,9 @@ RealtimeUpdate = {
      _favorurl: '',
      _deleteurl: '',
      _updatecounter: 0,
+     _updatedelay: 500,
+     _maxnotices: 50,
+     _windowhasfocus: false,
 
      init: function(userid, replyurl, favorurl, deleteurl)
      {
@@ -44,7 +47,9 @@ RealtimeUpdate = {
 
         DT = document.title;
 
-        $(window).blur(function() {
+        $(window).bind('focus', function(){ RealtimeUpdate._windowhasfocus = true; });
+
+        $(window).bind('blur', function() {
           $('#notices_primary .notice').css({
             'border-top-color':$('#notices_primary .notice:last').css('border-top-color'),
             'border-top-style':'dotted'
@@ -57,6 +62,7 @@ RealtimeUpdate = {
 
           RealtimeUpdate._updatecounter = 0;
           document.title = DT;
+          RealtimeUpdate._windowhasfocus = false;
 
           return false;
         });
@@ -76,11 +82,22 @@ RealtimeUpdate = {
               $("#notices_primary .notices").prepend(noticeItem);
               $("#notices_primary .notice:first").css({display:"none"});
               $("#notices_primary .notice:first").fadeIn(1000);
+
+              if ($('#notices_primary .notice').length > RealtimeUpdate._maxnotices) {
+                   $("#notices_primary .notice:last .form_disfavor").unbind('submit');
+                   $("#notices_primary .notice:last .form_favor").unbind('submit');
+                   $("#notices_primary .notice:last .notice_reply").unbind('click');
+                   $("#notices_primary .notice:last").remove();
+              }
+
+              NoticeFavors();
               NoticeReply();
 
-              RealtimeUpdate._updatecounter += 1;
-              document.title = '('+RealtimeUpdate._updatecounter+') ' + DT;
-          }, 500);
+              if (RealtimeUpdate._windowhasfocus === false) {
+                  RealtimeUpdate._updatecounter += 1;
+                  document.title = '('+RealtimeUpdate._updatecounter+') ' + DT;
+              }
+          }, RealtimeUpdate._updatedelay);
      },
 
      makeNoticeItem: function(data)
@@ -163,12 +180,14 @@ RealtimeUpdate = {
 
      addPopup: function(url, timeline, iconurl)
      {
-         $('#notices_primary').css({'position':'relative'});
-         $('#notices_primary').prepend('<button id="realtime_timeline" title="Pop up in a window">Pop up</button>');
+         var NP = $('#notices_primary');
+         NP.css({'position':'relative'});
+         NP.prepend('<button id="realtime_timeline" title="Pop up in a window">Pop up</button>');
 
-         $('#realtime_timeline').css({
+         var RT = $('#realtime_timeline');
+         RT.css({
              'margin':'0 0 11px 0',
-             'background':'transparent url('+ iconurl + ') no-repeat 0% 30%',
+             'background':'transparent url('+ iconurl + ') no-repeat 0 30%',
              'padding':'0 0 0 20px',
              'display':'block',
              'position':'absolute',
@@ -176,15 +195,15 @@ RealtimeUpdate = {
              'right':'0',
              'border':'none',
              'cursor':'pointer',
-             'color':$("a").css("color"),
+             'color':$('a').css('color'),
              'font-weight':'bold',
              'font-size':'1em'
          });
-
-         $('#realtime_timeline').click(function() {
+         $('#showstream #notices_primary').css({'margin-top':'18px'});
+         RT.bind('click', function() {
              window.open(url,
-                         timeline,
-                         'toolbar=no,resizable=yes,scrollbars=yes,status=yes');
+                         '',
+                         'toolbar=no,resizable=yes,scrollbars=yes,status=yes,width=500,height=550');
 
              return false;
          });
@@ -192,7 +211,6 @@ RealtimeUpdate = {
 
      initPopupWindow: function()
      {
-         window.resizeTo(500, 550);
          $('address').hide();
          $('#content').css({'width':'93.5%'});
 
@@ -211,6 +229,12 @@ RealtimeUpdate = {
          $('#form_notice #notice_data-attach').css({
             'left':'auto',
             'right':'0'
+         });
+
+         $('.notices .entry-title a, .notices .entry-content a').bind('click', function() {
+            window.open(this.href, '');
+            
+            return false;
          });
      }
 }

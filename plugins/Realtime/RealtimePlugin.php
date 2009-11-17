@@ -132,8 +132,8 @@ class RealtimePlugin extends Plugin
 
         // Add to the public timeline
 
-        if ($notice->is_local ||
-            ($notice->is_local == 0 && !common_config('public', 'localonly'))) {
+        if ($notice->is_local == Notice::LOCAL_PUBLIC ||
+            ($notice->is_local == Notice::REMOTE_OMB && !common_config('public', 'localonly'))) {
             $paths[] = array('public');
         }
 
@@ -230,7 +230,6 @@ class RealtimePlugin extends Plugin
         }
 
         $action->showContentBlock();
-        $action->showScripts();
         $action->elementEnd('body');
         return false; // No default processing
     }

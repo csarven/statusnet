@@ -537,7 +537,7 @@ font-size:0.8em;
 /* entity_profile */
 .entity_profile {
 position:relative;
-width:74.702%;
+width:73%;
 min-height:123px;
 float:left;
 margin-bottom:18px;
@@ -604,7 +604,8 @@ font-style:italic;
 /*entity_actions*/
 .entity_actions {
 float:right;
-margin-left:2.35%;
+margin-left:2%;
+margin-bottom:18px;
 max-width:25%;
 }
 .entity_actions h2 {
