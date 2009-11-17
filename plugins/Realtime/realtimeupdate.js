@@ -200,8 +200,6 @@ RealtimeUpdate = {
              'font-size':'1em'
          });
          $('#showstream #notices_primary').css({'margin-top':'18px'});
-alert(url);
-alert(timeline);
          RT.bind('click', function() {
              window.open(url,
                          '',
