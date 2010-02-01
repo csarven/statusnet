@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 0.8.2 ("Life and How to Live It")
-1 Nov 2009
+StatusNet 0.8.3 ("Good Advices")
+1 Feb 2010
 
 This is the README file for StatusNet (formerly Laconica), the Open
 Source microblogging platform. It includes installation instructions,
@@ -77,81 +77,49 @@ for additional terms.
 New this version
 ================
 
-This is a minor feature and bugfix release since version 0.8.1,
-released Aug 26 2009. Notable changes this version:
+This is a security and bug fix release since version 0.8.2 release 1
+Nov 2009. It is highly recommended that users of version 0.8.2 upgrade
+to this version immediately since it fixes a serious security issue.
 
-- New script for deleting user accounts. Not particularly safe or
-  community-friendly. Better for deleting abusive accounts than for
-  users who are 'retiring'.
-- Improved detection of URLs in notices, specifically for punctuation
-  chars like ~, :, $, _, -, +, !, @, and %.
-- Removed some extra <dl> semantic HTML code.
-- Correct error in status-network database ini file (having multiple
-  statusnet sites with a single codebase)
-- Fixed error output for Twitter posting failures.
-- Fixed bug in Twitter queue handler that requeued inapplicable
-  notices ad infinitum.
-- Improve FOAF output for remote users.
-- new commands to join and leave groups.
-- Fixed bug in which you cannot turn off importing friends timelines
-  flag.
-- Better error handling in Twitter posting.
-- Show oEmbed data for XHTML files as well as plain HTML.
-- Updated bug database link in README.
-- require HTML tidy extension.
-- add support for HTTP Basic Auth in PHP CGI or FastCGI (e.g. GoDaddy).
-- autofocus input to selected entry elements depending on page.
-- updated layout for filter-by-tag form.
-- better layout for inbox and outbox pages.
-- fix highlighting search terms in attributes of notice list elements.
-- Correctly handle errors in linkback plugin.
-- Updated biz theme.
-- Updated cloudy theme.
-- Don't match '::' as an IPv6 address.
-- Use the same decision logic for deciding whether to mark an
-  attachment as an enclosure in RSS or as a paperclip item in Web
-  output.
-- Fixed a bug in the Piwik plugin that hard-coded the site ID.
-- Add a param, inreplyto, to notice/new to allow an explicit response
-  to another notice.
-- Show username in subject of emails.
-- Check if avatar exists before trying to delete it.
-- Correctly add omb_version to response for request token in OMB.
-- Add a few more SMS carriers.
-- Add a few more notice sources.
-- Vary: header.
-- Improvements to the AutoCompletePlugin.
-- Check for 'dl' before using it.
-- Make it impossible to delete self-subscriptions via the API.
-- Fix pagination of tagged user pages.
-- Make PiwikAnalyticsPlugin work with addPlugin().
-- Removed trailing single space in user nicknames in notice lists.
-- Show context link if a notice starts a conversation.
-- blacklist all files and directories in install dir.
-- handle GoDaddy-style PATH_INFO, including script name.
-- add home_timeline synonym for friends_timeline.
-- Add a popup window for the realtime plugin.
-- Add some more streams for the realtime plugin.
-- Fix a bug that overwrote group creation timestamp on every edit.
-- Moved HTTP error code strings to a class variable.
-- The Twitter API now returns server errors in the correct format.
-- Reset the doctype for HTML output.
-- Fixed a number of notices.
-- Don't show search suggestions for private sites.
-- Some corrections to FBConnect nav overrides.
-- Slightly less database-intensive session management.
-- Updated name of software in installer script.
-- Include long-form attachment URLs if url-shortener is disabled.
-- Include updated localisations for Polish, Greek, Hebrew, Icelandic,
-  Norwegian, and Chinese.
-- Include upstream fixes to gettext.php.
-- Correct for regression in Facebook API for updates.
-- Ignore "Sent from my iPhone" (and similar) in mail updates.
-- Use the NICKNAME_FMT constant for detecting nicknames.
-- Check for site servername config'd.
-- Compatibility fix for empty status updates with Twitter API.
-- a script to register a new user.
-- a script to make a user admin of a group.
+45c1516 fix local file include vulnerability in doc.php
+3af689f fixed misleading error message that tells you to install "tidy" to get mysql|pgsql working
+0a586f0 Add MuSTArD to notice sources
+5502598 Remove alerts
+0133e56 Changed to bind and removed window name because IE doesn't like names with '-' in them.
+57b7dac Open anchors in entry-title and entry-content on a new window
+9efb65e Fix layout for entity_actions
+79f3472 Calling selector once
+74f33ab Added margin-top for showstream page (space between entity_actions and notice_primary)
+b67cc3e Set window resize before openning it up
+4afc50f Bug 1655/bug 1905: fix for Internet Explorer receiving FOAF output when clicking user links.
+a6399ce Showing counter for new notices only if the window is on blur
+ca31504 Using the right selector for notice_reply
+8b4fd41 Added NoticeFavors() for received notices
+be73757 Unbinding the events from Notice reply and favor for possible memory leaks
+629532e Added update delay and max notice count
+e4d1913 Only show local notices or (remote notices if they're supposed to be shown)
+3bf1024 Fix regression from ba199ad4ec47e6b0c067a3b2a15882d3836ea009: typo in refactoring caused fatal error on unrecognized message source Example report from live site: http://identi.ca/notice/14629110
+3752c1f Removed extra showScript() call at the bottom of the document. 0.8.x is using <head> for scripts whereas 0.9.x puts it before </body>. This also fixes the duplicate posts
+c28b9ce Removed old comments
+4f1b7fe Disable debug mode (so there are no messages written to the javascript console)
+03022c6 Resetup the ajaxification for replies and favors after inf. scrolling Made the selector much more specific, so it only works on pages that have notices
+83b92d9 Refactored the favorite button ajaxification to a separate function
+c9eb7c1 Bug 1969: rebuild corrupted l10n files which caused all UI strings to be shown as nulls
+499b355 broadcast profile changes from updateavatarurl.php
+a6312cb script to update avatar URLs on server
+a0a9c7b script to update avatar URLs on server
+5c5a905 Moved back to using lib twitterapi instead of api for 0.8.x
+1343196 Fix typo in doc/badge (bug 1958)
+8516c4e typo :P
+1e1b2f7 console.php: fix up the help and include a handy cut-n-paste'able example
+4b7a36e console.php terminal script provides interactive PHP console in StatusNet environment, handy for testing!
+00e7214 Added script documentation
+1e7c4f7 Script no longer neeed
+cc0a6dc Sync RealtimePlugin with 0.9.x
+df1ee68 Sync Realtime JavaScript with 0.9.x
+f0fc12b script to make someone a group admin
+edb2713 correct name in registeruser
+eee033a script to register a user
 
 Prerequisites
 =============
