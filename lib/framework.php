@@ -19,13 +19,13 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-define('STATUSNET_BASE_VERSION', '1.0.1');
+define('STATUSNET_BASE_VERSION', '1.0.2');
 define('STATUSNET_LIFECYCLE', ''); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'Get It Together');
+define('STATUSNET_CODENAME', 'Sabotage');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);
